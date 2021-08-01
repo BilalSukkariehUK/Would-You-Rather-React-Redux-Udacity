@@ -1,13 +1,76 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html, body{
+    height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container{
+    height: 100%;
+}
+
+.row{
+    height: 100%;
+}
+
+.nav-tabs > .nav-item{
+    width: 50%;
+    text-align: center;
+}
+
+.nav-row{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+nav{
+    font-size: 16px;
+    padding: 10px;
+}
+
+.nav-container{
+    margin-bottom: 20px;
+}
+
+.profile-photo, .profile-photo-link{
+    padding: 0px !important;
+}
+
+.nav-bar > .nav-item{
+    margin: 0px 5px;
+}
+
+.navbar-text{
+    margin: 0px 5px;
+}
+
+.nav-tabs{
+    margin-bottom: 10px;
+}
+
+.col-sm-3{
+    padding: 10px;
+    border-right: 1px solid;
+    border-color: lightgrey;
+}
+
+.col-sm-9{
+    padding: 20px;
+}
+
+label{
+    margin-left: 10px;
+}
+
+.btn-block{
+    width: 100%;
+}
+
+.card{
+    margin: 10px 0px;
+}
+
+input[type=text]{
+    margin: 10px 0px;
+}
+
+.form-check-label{
+    width: 100%;
 }

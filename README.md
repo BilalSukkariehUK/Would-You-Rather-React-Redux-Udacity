@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+# Would You Rather Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstraped using create-react-app for the final assessment project for Udacity's React Redux course, this app makes use of redux to manage react's state as well as bootstrap.
 
-## Available Scripts
+## App Functionality
 
-In the project directory, you can run:
+* login to user account 
+* answer list of question
+* view answer statistics upon answering a question
+* add new new questions
+* view the leader board
 
-### `yarn start`
+## TL;DR
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To start using the app right away:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+* install all project dependencies with `npm install`
+* start the development server with `npm start`
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## What You're Getting
+```bash
+├── CONTRIBUTING.md
+├── README.md - This file.
+├── package.json # npm package manager file. 
+├── public
+│   ├── favicon.ico # React Icon.
+│   └── index.html # DO NOT MODIFY
+└── src
+    ├── actions # the app's actions
+    │   ├── questions.js # includes question related actions
+    │   ├── users.js # includes users related actions
+    │   └── shared.js # includes the app shared actions
+    ├── reducers # the app's reducers
+    │   ├── questions.js # questions reducers 
+    │   ├── users.js # answers reducers
+    │   └── index.js # combines the reducers
+    ├── middleware # the app's middleware
+    │   ├── logger.js # logs the dispatches
+    │   └── index.js # adds thunk and exports applyMiddleware
+    ├── components # the app's components
+    │   ├── App.js # the main app component includes the routes
+    │   ├── Home.js # the main component upon login includes the shared navigation
+    │   ├── HomeTabs.js # renders the tabs for answered / unanswered questions
+    │   ├── LeaderBoard.js # component responsible for viewing users leader board
+    │   ├── Login.js # component responsible for loging users in
+    │   ├── Navigation.js # the navigation bar
+    │   ├── Question.js # the component responsible answering and viewing question result
+    │   ├── NewQuestion.js # the component responsible for adding new questions
+    │   └── QuestionList.js # the component responsible for rendering list on questions
+    ├── index.css # custom styles
+    └── index.js # creates the store and adds provider
+```
 
-### `yarn build`
+This project follows React best practices.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Backend Server
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This project makes use of the backend server provided by Udacity. The provided file [`_DATA_.js`](src/utils/_DATA.js) contains the methods needed to perform necessary operations on the backend:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Important
+As we are using a fake database, refreshing the page will reset any events that occured such as answering a question or adding a new one.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Contributing
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This repository is part of Udacity ReactJS nanodegree program submited projects. Therefore, I most likely will not accept pull requests.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
