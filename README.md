@@ -30,10 +30,12 @@ To start using the app right away:
     ├── actions # the app's actions
     │   ├── questions.js # includes question related actions
     │   ├── users.js # includes users related actions
+    │   ├── autheduser.js # includes authentication related actions
     │   └── shared.js # includes the app shared actions
     ├── reducers # the app's reducers
     │   ├── questions.js # questions reducers 
-    │   ├── users.js # answers reducers
+    │   ├── users.js # user reducers
+    │   ├── autheduser.js # authentication reducers
     │   └── index.js # combines the reducers
     ├── middleware # the app's middleware
     │   ├── logger.js # logs the dispatches
