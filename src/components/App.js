@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom'
+import { handleLoginUser, handleLogoutUser } from '../actions/autheduser'
 import { handleInitialData } from '../actions/shared'
 import Home from './Home'
 import Login from './Login'
@@ -9,24 +10,27 @@ class App extends Component {
 
   constructor() {
     super();
-    this.state = {
-      authedUser: localStorage.getItem('authedUser') ? localStorage.getItem('authedUser') : ''
+    this.state={
+      loggedIn : false
     }
     this.onLogout = this.onLogout.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
-  handleSelect = (e) => {
+  handleLogin = (e, username) => {
     e.preventDefault()
-    localStorage.setItem('authedUser', e.target.value);
+    const { dispatch } = this.props
+    dispatch(handleLoginUser(username))
     this.setState({
-      authedUser: e.target.value
+      loggedIn: true
     })
   }
 
-  onLogout(){
-    localStorage.setItem('authedUser', '');
+  onLogout = (e) => {
+    const { dispatch } = this.props
+    dispatch(handleLogoutUser(''))
     this.setState({
-      authedUser: ''
+      loggedIn: false
     })
   }
 
@@ -35,62 +39,55 @@ class App extends Component {
   }
   render(){
         return (
-          <div>
             <Router>  
-                  <Route path='/login' component={(props) => 
+                  <Route path='/login' render={(props) => 
                     <Login
                     {...props}
                     users={this.props.users} 
-                    handleSelect={this.handleSelect}
+                    handleLogin={this.handleLogin}
                     />
                   }/>
-                  <Route path='/home' component={(props) =>
-                      <Home
-                        {...props}
-                        authedUser={this.state.authedUser}
-                        onLogout={this.onLogout}
-                        fragmentToRender='tabs'
-                      />
+                  <Route path='/home' render={(props) => 
+                    <Home 
+                    {...props}
+                    onLogout={this.onLogout}
+                    fragmentToRender='tabs'
+                    />
                   }/>
-                    <Route path='/new' component={(props) =>
+                    <Route path='/new' render={(props) =>
                       <Home
                         {...props}
-                        authedUser={this.state.authedUser}
                         onLogout={this.onLogout}
                         fragmentToRender='new'
                       />
                     }/>
-                    <Route path='/leaders' component={(props) =>
+                    <Route path='/leaders' render={(props) =>
                       <Home
                         {...props}
-                        authedUser={this.state.authedUser}
                         onLogout={this.onLogout}
                         fragmentToRender='leaders'
                       />
                     }/>
-                    <Route path='/question/:id' component={(props) =>
+                    <Route path='/question/:id' render={(props) =>
                       <Home
                         {...props}
-                        authedUser={this.state.authedUser}
                         onLogout={this.onLogout}
                         fragmentToRender='question'
                       />
                     }/>
-              {this.state.authedUser === ''
+              {this.state.loggedIn === false
                 ?<Redirect to='/login'/>
                 :<Redirect to='/home'/>
               }
-            </Router> 
-              
-          </div>
-          
+            </Router>   
       );
   }
 }
 
 function mapStateToProps (state) {
-  const { users, questions } = state
+  const { authedUser, users, questions } = state
   return{
+    authedUser,
     users,
     questions
   }

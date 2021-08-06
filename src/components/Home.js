@@ -10,17 +10,16 @@ import { Redirect } from 'react-router'
 
 
 
-class Home extends Component{
-    
 
+class Home extends Component{
+
+    
     render(){
-        
-        const authedUser = this.props.authedUser
-        return(
-            
+        const authedUser = this.props.authedUser.id
+        return( 
             <div>
-                {this.props.questions === null 
-                ? <Redirect to='/'/>
+                {authedUser === undefined
+                ?<Redirect to='/'/>
                 :<div>
                     <Navigation onLogout={this.props.onLogout} authedUser={this.props.users[authedUser]}/>
                 <Container>
@@ -40,23 +39,18 @@ class Home extends Component{
                         }
                         </Col>
                     </Row>
-                </Container>
-                </div>
-                }
-                    
-                
-                
-                
-                    
-                            
+                </Container>   
+                </div>}
+                      
             </div>
         )
     }
 }
 
 function mapStateToProps (state) {
-    const { users, questions } = state
+    const { authedUser, users, questions } = state
     return{
+      authedUser,
       users,
       questions
     }

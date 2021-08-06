@@ -23,7 +23,6 @@ class Question extends Component {
     }
 
     handleAnswer = (e) => {
-        console.log(this.props)
     const {dispatch, authedUser, id} = this.props
     e.preventDefault()
     dispatch(handleSaveAnswer({
