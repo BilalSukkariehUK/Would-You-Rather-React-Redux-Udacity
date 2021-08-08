@@ -7,6 +7,7 @@ import Home from './Home'
 import Login from './Login'
 
 class App extends Component {
+  
 
   constructor() {
     super();
@@ -39,7 +40,7 @@ class App extends Component {
   }
   render(){
         return (
-            <Router>  
+            <Router>
                   <Route path='/login' render={(props) => 
                     <Login
                     {...props}
@@ -54,18 +55,18 @@ class App extends Component {
                     fragmentToRender='tabs'
                     />
                   }/>
-                    <Route path='/new' render={(props) =>
+                    <Route path='/add' render={(props) =>
                       <Home
                         {...props}
                         onLogout={this.onLogout}
-                        fragmentToRender='new'
+                        fragmentToRender='add'
                       />
                     }/>
-                    <Route path='/leaders' render={(props) =>
+                    <Route path='/leaderboard' render={(props) =>
                       <Home
                         {...props}
                         onLogout={this.onLogout}
-                        fragmentToRender='leaders'
+                        fragmentToRender='leaderboard'
                       />
                     }/>
                     <Route path='/question/:id' render={(props) =>
@@ -76,7 +77,10 @@ class App extends Component {
                       />
                     }/>
               {this.state.loggedIn === false
-                ?<Redirect to='/login'/>
+                ?<Redirect to={{
+                  pathname: '/login',
+                  state: { from: this.props.location}
+                }}/>
                 :<Redirect to='/home'/>
               }
             </Router>   

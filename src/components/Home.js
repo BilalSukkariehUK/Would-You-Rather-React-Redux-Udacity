@@ -28,10 +28,10 @@ class Home extends Component{
                         {this.props.fragmentToRender === 'tabs' && 
                         <HomeTabs props={this.props} authedUser={authedUser}/>
                         }
-                        {this.props.fragmentToRender === 'new' && 
+                        {this.props.fragmentToRender === 'add' && 
                         <NewQuestion props={this.props} authedUser={authedUser}/>
                         }
-                        {this.props.fragmentToRender === 'leaders' && 
+                        {this.props.fragmentToRender === 'leaderboard' && 
                         <LeaderBoard props={this.props} authedUser={authedUser}/>
                         }
                         {this.props.fragmentToRender === 'question' && 

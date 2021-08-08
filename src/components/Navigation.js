@@ -32,10 +32,10 @@ export default function Navigation (props) {
                         <Collapse isOpen={isOpen} navbar>
                             <Nav className="mr-auto" navbar>
                                 <NavItem>
-                                    <NavLink to='/new' className="nav-link">Add Question</NavLink>
+                                    <NavLink to='/add' className="nav-link">Add Question</NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink to='/leaders' className="nav-link">Leader Board</NavLink>
+                                    <NavLink to='/leaderboard' className="nav-link">Leader Board</NavLink>
                                 </NavItem>
                             </Nav>
                         </Collapse>

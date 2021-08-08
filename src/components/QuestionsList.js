@@ -9,9 +9,11 @@ import { Card, CardHeader, CardBody,
 class QuestionsList extends Component{
 
     render(){
+      let questionArray = Object.keys(this.props.questionsList).map(k => this.props.questionsList[k])
+      const sortedArray = questionArray.sort((a,b) => b.timestamp - a.timestamp)
         return(
             <div>
-                {Object.keys(this.props.questionsList).map(k => this.props.questionsList[k]).map((question) => (
+                {sortedArray.map((question) => (
                   
                     <Card key={question.id}>
                     <CardHeader> {this.props.users[question.author].name} asks:</CardHeader>

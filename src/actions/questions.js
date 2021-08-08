@@ -57,8 +57,9 @@ export function handleSaveAnswer(answer){
             _getUsers()
         ])
         .then(([ questions, users ]) => {
-            dispatch(receiveUsers(users))
+            console.log(users)
             dispatch(receiveQuestions(questions))
+            dispatch(receiveUsers(users))
             dispatch(hideLoading())
         })
         .catch((e) => {

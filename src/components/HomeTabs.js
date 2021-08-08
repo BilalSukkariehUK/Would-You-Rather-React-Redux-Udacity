@@ -44,31 +44,33 @@ class HomeTabs extends Component {
     return (
         <div>
           <Nav tabs>
-            <NavItem>
-              <NavLink
-                className={classnames({ active: this.state.activeTab === '1' })}
-                onClick={() => { this.toggle('1'); }}
-              >
-                Answered Questions
-              </NavLink>
-            </NavItem>
-            <NavItem>
+            
+              <NavItem>
+                <NavLink
+                  className={classnames({ active: this.state.activeTab === '1' })}
+                  onClick={() => { this.toggle('1'); }}
+                >
+                  Unaswered Questions
+                </NavLink>
+              </NavItem>
+              <NavItem>
               <NavLink
                 className={classnames({ active: this.state.activeTab === '2' })}
                 onClick={() => { this.toggle('2'); }}
               >
-                Unaswered Questions
+                Answered Questions
               </NavLink>
             </NavItem>
+            
           </Nav>
           <TabContent activeTab={this.state.activeTab}>
             <TabPane tabId="1">
               <Row>
                 <Col sm={{size: 10, offset: 1}}>
                   <QuestionsList 
-                        questionsList={authedUserAnsweredQuestionsObject}
-                        answered={true}
-                    />
+                        questionsList={authedUserUnansweredQuestionsObject}
+                        answered={false}
+                  />
                 </Col>
               </Row>
             </TabPane>
@@ -76,9 +78,9 @@ class HomeTabs extends Component {
               <Row>
                 <Col sm={{size: 10, offset: 1}}>
                   <QuestionsList 
-                        questionsList={authedUserUnansweredQuestionsObject}
-                        answered={false}
-                  />
+                        questionsList={authedUserAnsweredQuestionsObject}
+                        answered={true}
+                    />
                 </Col>
               </Row>
             </TabPane>

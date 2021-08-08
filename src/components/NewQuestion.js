@@ -34,7 +34,6 @@ class NewQuestion extends Component{
     handleAddQuestion = (e) => {
     const {dispatch, authedUser} = this.props
     e.preventDefault()
-    console.log(this.state)
     dispatch(handleAddQuestion({
         author: authedUser,
         optionOneText: this.state.optionOne,
