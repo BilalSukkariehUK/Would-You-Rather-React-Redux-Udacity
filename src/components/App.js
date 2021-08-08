@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom'
+import {  Redirect, Route, withRouter } from 'react-router-dom'
 import { handleLoginUser, handleLogoutUser } from '../actions/autheduser'
 import { handleInitialData } from '../actions/shared'
 import Home from './Home'
@@ -12,7 +12,8 @@ class App extends Component {
   constructor() {
     super();
     this.state={
-      loggedIn : false
+      loggedIn : false,
+      requestedUrl: '/'
     }
     this.onLogout = this.onLogout.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
@@ -22,30 +23,47 @@ class App extends Component {
     e.preventDefault()
     const { dispatch } = this.props
     dispatch(handleLoginUser(username))
-    this.setState({
-      loggedIn: true
-    })
+    if(this.state.requestedUrl === '/'){
+      this.setState({
+        loggedIn: true
+      }, this.props.history.push('/home'))
+    }else if(this.state.requestedUrl === '/login'){
+      this.setState({
+        loggedIn: true
+      }, this.props.history.push('/home'))
+    }else{
+      this.setState({
+        loggedIn: true
+      }, this.props.history.push(this.state.requestedUrl))
+    }
+    
   }
 
   onLogout = (e) => {
     const { dispatch } = this.props
     dispatch(handleLogoutUser(''))
     this.setState({
-      loggedIn: false
+      loggedIn: false,
+      requestedUrl: '/'
     })
   }
 
   componentDidMount(){
+    this.setState(prevState =>({
+      ...prevState,
+      requestedUrl: this.props.location.pathname
+    }))
     this.props.dispatch(handleInitialData())
   }
   render(){
         return (
-            <Router>
+          <div>
                   <Route path='/login' render={(props) => 
                     <Login
                     {...props}
                     users={this.props.users} 
                     handleLogin={this.handleLogin}
+                    requestedUrl={this.state.requestedUrl}
                     />
                   }/>
                   <Route path='/home' render={(props) => 
@@ -76,14 +94,10 @@ class App extends Component {
                         fragmentToRender='question'
                       />
                     }/>
-              {this.state.loggedIn === false
-                ?<Redirect to={{
-                  pathname: '/login',
-                  state: { from: this.props.location}
-                }}/>
-                :<Redirect to='/home'/>
-              }
-            </Router>   
+              {!this.state.loggedIn &&
+                <Redirect to='/login'/>
+              } 
+        </div>
       );
   }
 }
@@ -97,4 +111,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default withRouter(connect(mapStateToProps)(App))
